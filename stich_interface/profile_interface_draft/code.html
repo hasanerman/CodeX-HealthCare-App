@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f2f4f6",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2d3133",
+                    "on-primary-container": "#003751",
+                    "tertiary": "#006c49",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-tertiary-fixed": "#002113",
+                    "on-surface-variant": "#3e4850",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "on-secondary-container": "#5c647a",
+                    "secondary": "#565e74",
+                    "on-background": "#191c1e",
+                    "inverse-primary": "#89ceff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#006591",
+                    "secondary-fixed": "#dae2fd",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface": "#f7f9fb",
+                    "tertiary-fixed": "#6ffbbe",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f7f9fb",
+                    "background": "#f7f9fb",
+                    "primary": "#006591",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#001e2f",
+                    "inverse-on-surface": "#eff1f3",
+                    "outline": "#6e7881",
+                    "on-tertiary-container": "#003b26",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-surface": "#191c1e",
+                    "primary-fixed": "#c9e6ff",
+                    "secondary-container": "#dae2fd",
+                    "surface-variant": "#e0e3e5",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary-container": "#0ea5e9",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#00b17b",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-container": "#eceef0",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#89ceff",
+                    "outline-variant": "#bec8d2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background selection:bg-primary-container/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl shadow-[0_40px_40px_-15px_rgba(0,101,145,0.06)] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="Dr. Julian Vance" class="w-full h-full object-cover" data-alt="professional headshot of a young doctor with a kind expression in a clinical setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMB11ABKBS_x5eU67TJU1060gZysYowkhc3KzdCZwRP_3T0SiTWzSExVeVmAnIzK9DzDgoM3nOPL1FEwDT5XdheKhF7QuCSxjoh6h4-xkEwIufC55RknRGgnWVSrCKBn3q8oFBgl04WoqDICDqlizBNIOf67mVCw1zY7grK946GNPxmLBlSrSEW3Qy6U9xnTqaa99NJDf5qViKEOOKjwPsRd-p11f8wlEpv6Xs8M0yMtOLBk0jI4H1jLH6IPjPx0YarzddLZuntQ"/>
+</div>
+<span class="text-xl font-extrabold text-sky-900 dark:text-sky-100 tracking-tighter font-headline">CodeX HealthCare</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100/50 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-sky-600">notifications</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-md mx-auto">
+<!-- Hero Profile Section -->
+<section class="flex flex-col items-center mb-10">
+<div class="relative mb-6">
+<div class="w-32 h-32 rounded-xl overflow-hidden shadow-2xl ring-4 ring-white">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a professional male doctor in a modern healthcare environment with soft blue tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0GSh0U3xV5hG8a8Kgm1Fhi4kSDIL0Xi0I4lFWsRxGhqyaI597vG-o49NnvwcnLrjl90shttmmNe3nQGVMKMGmyDZu0p-Ai12SJrshCBFrfwFyyckl4AgIOL_N3rgIf1gzsL601glewtTa02Q1Juv5fFGB2jfO33nOVrnm2kffryPMhDyr-f9DhLNKwLKY0XoL6_APV_cIfOVBnzshE_1zK8Cp5sqtqDbj9KLDkoUusosIq5E5WSUJ3BTuxgoL0XAWgLDduglUKw"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-tertiary-container text-on-tertiary-container w-10 h-10 rounded-full flex items-center justify-center shadow-lg border-4 border-background">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<h1 class="font-headline text-3xl font-extrabold text-on-background tracking-tight mb-1 text-center">Dr. Julian Vance</h1>
+<p class="text-on-surface-variant font-medium mb-6">j.vance@codex.ai</p>
+<button class="flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-3 rounded-xl font-headline font-bold shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+<span>Edit Profile</span>
+</button>
+</section>
+<!-- Metrics Grid -->
+<div class="space-y-4">
+<!-- Metric Card: Bio Data -->
+<div class="glass-card p-6 rounded-lg shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant mb-0.5">Age &amp; Gender</p>
+<p class="font-headline text-lg font-bold text-on-surface">34 yrs • Male</p>
+</div>
+</div>
+<div class="px-3 py-1 bg-tertiary-container/20 text-tertiary rounded-full text-[12px] font-bold">
+                    Active
+                </div>
+</div>
+<!-- Metric Card: Height & Weight -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-6 rounded-lg shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 mb-4">
+<span class="material-symbols-outlined">straighten</span>
+</div>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant mb-0.5">Height</p>
+<p class="font-headline text-2xl font-extrabold text-on-surface italic">182 <span class="text-sm font-medium not-italic text-on-surface-variant">cm</span></p>
+</div>
+<div class="glass-card p-6 rounded-lg shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 mb-4">
+<span class="material-symbols-outlined">monitor_weight</span>
+</div>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant mb-0.5">Weight</p>
+<p class="font-headline text-2xl font-extrabold text-on-surface italic">78 <span class="text-sm font-medium not-italic text-on-surface-variant">kg</span></p>
+</div>
+</div>
+<!-- Metric Card: Blood Group -->
+<div class="glass-card p-6 rounded-lg shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-between border-l-4 border-tertiary">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bloodtype</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant mb-0.5">Blood Group</p>
+<p class="font-headline text-xl font-bold text-on-surface">O Positive</p>
+</div>
+</div>
+<span class="font-headline text-3xl font-black text-on-surface/20">O+</span>
+</div>
+<!-- Status Indicator Card -->
+<div class="glass-card p-6 rounded-lg shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-tertiary/5">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-xs font-bold text-tertiary uppercase tracking-tighter">Healthy Status Indicators</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm font-medium text-on-surface-variant">BMI Index</span>
+<span class="text-sm font-bold text-tertiary">23.5 (Normal)</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mandatory Disclaimer -->
+<footer class="mt-12 mb-8 px-4 text-center">
+<p class="text-[10px] text-on-surface-variant/60 leading-relaxed font-medium">
+                DISCLAIMER: CodeX HealthCare provides general healthcare information for educational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+            </p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-24 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl flex justify-around items-center px-4 pb-4 rounded-t-[32px] z-50 shadow-[0_-10px_40px_rgba(0,101,145,0.06)]">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-sky-500 transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span class="font-manrope font-semibold text-[10px] uppercase tracking-widest">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-sky-500 transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1">search</span>
+<span class="font-manrope font-semibold text-[10px] uppercase tracking-widest">Drug Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-sky-500 transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1">biotech</span>
+<span class="font-manrope font-semibold text-[10px] uppercase tracking-widest">Lab Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-sky-500 transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1">radiology</span>
+<span class="font-manrope font-semibold text-[10px] uppercase tracking-widest">X-Ray Analysis</span>
+</a>
+</nav>
+</body></html>

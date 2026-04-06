@@ -1,8 +1,8 @@
+import Constants from 'expo-constants';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Alert, Platform } from 'react-native';
-import * as Notifications from 'expo-notifications';
-import * as Device from 'expo-device';
-import Constants from 'expo-constants';
 
 export type User = {
   id: number;
@@ -26,7 +26,7 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const BASE_URL = 'http://185.7.241.52:5000/api';
+export const BASE_URL = 'http://YOR_SERVER_IP:{PORT}/api';
 
 // Configure notifications display
 Notifications.setNotificationHandler({

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "codex-healtcare-app-",
-    "slug": "codex-healtcare-app-",
+    "name": "CodeX-HealthCare-App",
+    "slug": "CodeX-HealthCare-App",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./stich_interface/app_icon/codex_app_icon.ico",

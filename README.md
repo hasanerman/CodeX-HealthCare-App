@@ -1,172 +1,172 @@
-## Ostim Tech - Google Developer Groups Hackathon '26   04-05.04.2026 
+## Ostim Tech - Google Developer Groups Hackathon '26   04-05.04.2026
 
 
 # CodeX HealthCare
 
-Kullanıcı odaklı bir **sağlık asistanı web uygulaması**: ilaç ve laboratuvar raporu analizi, şüphe taraması, takvim hatırlatmaları, yakındaki sağlık kuruluşları (harita), oyunlar ve profil yönetimi. Bu depo, **frontend (React)** ve **backend (Node.js API)** ile **MySQL** veritabanını içerir.
+A **user-centric health assistant web application**: medication and laboratory report analysis, symptom screening, calendar reminders, nearby healthcare facilities (map), games, and profile management. This repository contains the **frontend (React)**, **backend (Node.js API)**, and **MySQL** database.
 
-> **Önemli:** Uygulama bilgilendirme ve eğitim amaçlıdır; tıbbi teşhis veya tedavi yerine geçmez. Acil durumlarda **112**’yi arayın.
-
----
-
-## İçindekiler
-
-- [Öne çıkan özellikler](#öne-çıkan-özellikler)
-- [Teknoloji yığını](#teknoloji-yığını)
-- [Harici servisler ve API’ler](#harici-servisler-ve-apiler)
-- [Proje yapısı](#proje-yapısı)
-- [Veritabanı](#veritabanı)
-- [Gereksinimler](#gereksinimler)
-- [Yerel geliştirme](#yerel-geliştirme)
-- [Üretim ortamı (özet)](#üretim-ortamı-özet)
-- [Ortam değişkenleri](#ortam-değişkenleri)
-- [Dokümantasyon](#dokümantasyon)
+> **Important:** The application is for informational and educational purposes only; it is not a substitute for medical diagnosis or treatment. In emergencies, call **112**.
 
 ---
 
-## Öne çıkan özellikler
+## Table of Contents
 
-| Alan | Açıklama |
-|------|-----------|
-| Kimlik | Kayıt / giriş, JWT ile oturum |
-| İlaç | Metin veya görüntü ile arama / analiz (Gemini) |
-| Laboratuvar | PDF/görüntü rapor yükleme ve yapay zekâ özeti |
-| Tarama | Veritabanından senaryolu şüphe taraması |
-| Takvim | Kullanıcı etkinlikleri; e-posta + isteğe bağlı Expo push hatırlatmaları |
-| Bildirim | SMTP (Nodemailer), cron (İstanbul saati), Expo push token kaydı |
-| Harita | OpenStreetMap + Leaflet; Overpass ile yakın hastane/eczane |
-| Nöbetçi eczane | Üçüncü taraf site gömülü görünüm (`eczaneler.gen.tr`) |
-| Oyunlar | Skor kaydı ve geçmiş |
-| Konum | HTTPS’te GPS; aksi halde IP tabanlı yaklaşık konum servisleri |
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [External Services and APIs](#external-services-and-apis)
+- [Project Structure](#project-structure)
+- [Database](#database)
+- [Requirements](#requirements)
+- [Local Development](#local-development)
+- [Production Environment (Summary)](#production-environment-summary)
+- [Environment Variables](#environment-variables)
+- [Documentation](#documentation)
 
 ---
 
-## Teknoloji yığını
+## Key Features
 
-### Diller
+| Area | Description |
+|------|-------------|
+| Authentication | Registration / login, JWT-based sessions |
+| Medication | Text or image-based search / analysis (Gemini) |
+| Laboratory | PDF/image report upload and AI summary |
+| Screening | Scenario-based symptom screening from database |
+| Calendar | User events; email + optional Expo push reminders |
+| Notification | SMTP (Nodemailer), cron (Istanbul timezone), Expo push token registration |
+| Map | OpenStreetMap + Leaflet; nearby hospitals/pharmacies via Overpass |
+| On-Duty Pharmacy | Third-party embedded view (`eczaneler.gen.tr`) |
+| Games | Score saving and history |
+| Location | GPS over HTTPS; otherwise IP-based approximate location services |
+
+---
+
+## Technology Stack
+
+### Languages
 
 - **JavaScript (ES modules)** — frontend
 - **JavaScript (CommonJS)** — backend
-- **SQL (MySQL / MariaDB uyumlu)** — şema ve migrasyonlar
-- **HTML / CSS** — giriş noktası, Tailwind ile üretilen stiller
+- **SQL (MySQL / MariaDB compatible)** — schema and migrations
+- **HTML / CSS** — entry point, Tailwind-generated styles
 
 ### Frontend
 
-| Teknoloji | Kullanım |
-|-----------|----------|
-| **React 19** | Arayüz bileşenleri |
-| **Vite 8** | Derleme, dev sunucu, HMR |
-| **Tailwind CSS 4** | Utility-first stil |
-| **Axios** | HTTP istemcisi (REST API) |
-| **lucide-react** | İkon seti |
+| Technology | Usage |
+|------------|-------|
+| **React 19** | UI components |
+| **Vite 8** | Build, dev server, HMR |
+| **Tailwind CSS 4** | Utility-first styling |
+| **Axios** | HTTP client (REST API) |
+| **lucide-react** | Icon set |
 | **Google Fonts** | Manrope, Inter, Material Symbols |
 
 ### Backend
 
-| Teknoloji | Kullanım |
-|-----------|----------|
-| **Node.js** | Çalışma ortamı |
-| **Express 5** | HTTP API, middleware, dosya yükleme |
-| **mysql2** | MySQL bağlantı havuzu, async sorgular |
-| **jsonwebtoken** | JWT üretimi ve doğrulama |
-| **bcryptjs** | Parola hash |
-| **multer** | Multipart (rapor / ilaç görüntüsü) |
-| **dotenv** | Ortam değişkenleri |
-| **cors** | Çapraz köken istekleri |
-| **@google/generative-ai** | Google Gemini ile metin/görüntü analizi |
-| **nodemailer** | SMTP ile hatırlatma e-postaları |
-| **node-cron** | Zamanlanmış görevler (hatırlatma döngüsü) |
-| **luxon** | Tarih/saat (İstanbul saat dilimi) |
+| Technology | Usage |
+|------------|-------|
+| **Node.js** | Runtime environment |
+| **Express 5** | HTTP API, middleware, file upload |
+| **mysql2** | MySQL connection pool, async queries |
+| **jsonwebtoken** | JWT generation and verification |
+| **bcryptjs** | Password hashing |
+| **multer** | Multipart (report / medication image) |
+| **dotenv** | Environment variables |
+| **cors** | Cross-origin requests |
+| **@google/generative-ai** | Text/image analysis with Google Gemini |
+| **nodemailer** | Reminder emails via SMTP |
+| **node-cron** | Scheduled tasks (reminder loop) |
+| **luxon** | Date/time (Istanbul timezone) |
 
-### Harita ve medya (istemci)
+### Map and Media (Client)
 
-- **Leaflet 1.9** (CDN) — interaktif harita
-- **OpenStreetMap** karosu — harita görüntüleri
-
----
-
-## Harici servisler ve API’ler
-
-| Servis | Ne için |
-|--------|---------|
-| **Google Gemini** | İlaç, rapor, tarama yorumları (backend) |
-| **Gmail SMTP** (veya uyumlu SMTP) | Hatırlatma e-postaları |
-| **Expo Push API** | Mobil anlık bildirim (token kayıtlı cihazlara) |
-| **Overpass API** (`overpass-api.de`) | OSM’den yakın POI sorguları |
-| **ipwho.is / geojs.io** | Yaklaşık konum (HTTPS istemci tarafı) |
-| **eczaneler.gen.tr** | Nöbetçi eczane iframe gömülebilir içerik |
-
-Üretimde bu servislerin erişilebilir olması ve mümkünse **HTTPS** kullanılması önerilir.
+- **Leaflet 1.9** (CDN) — interactive map
+- **OpenStreetMap** tiles — map imagery
 
 ---
 
-## Proje yapısı
+## External Services and APIs
+
+| Service | Purpose |
+|---------|---------|
+| **Google Gemini** | Medication, report, and screening interpretations (backend) |
+| **Gmail SMTP** (or compatible SMTP) | Reminder emails |
+| **Expo Push API** | Mobile push notifications (to devices with registered tokens) |
+| **Overpass API** (`overpass-api.de`) | Nearby POI queries from OSM |
+| **ipwho.is / geojs.io** | Approximate location (HTTPS client-side) |
+| **eczaneler.gen.tr** | On-duty pharmacy iframe embeddable content |
+
+In production, it is recommended that these services are accessible and use **HTTPS** where possible.
+
+---
+
+## Project Structure
 
 ```
 CodeX-HealthCare/
 ├── frontend/                 # React + Vite
-│   ├── public/               # Statik dosyalar (logo.jpeg, favicon, .htaccess)
+│   ├── public/               # Static files (logo.jpeg, favicon, .htaccess)
 │   ├── src/
-│   │   ├── App.jsx           # Ana uygulama ve rotalar (sekme bazlı)
-│   │   ├── config.js         # VITE_API_URL taban adresi
-│   │   └── components/       # Alt bileşenler (takvim, oyunlar, nöbetçi embed vb.)
+│   │   ├── App.jsx           # Main application and routes (tab-based)
+│   │   ├── config.js         # VITE_API_URL base address
+│   │   └── components/       # Sub-components (calendar, games, on-duty embed, etc.)
 │   ├── index.html
 │   └── package.json
 ├── backend/
-│   ├── server.js             # Express uygulaması ve REST uçları
-│   ├── lib/notify/           # Mail, Expo push, hatırlatma işçisi
-│   ├── scripts/              # Yardımcı Node scriptleri
+│   ├── server.js             # Express application and REST endpoints
+│   ├── lib/notify/           # Mail, Expo push, reminder worker
+│   ├── scripts/              # Utility Node scripts
 │   └── package.json
-├── database/                 # SQL şema ve bakım scriptleri
-├── apis.md                   # REST API referansı
-├── mail_notify.md            # E-posta ve push hatırlatmaları
-└── README.md                 # Bu dosya
+├── database/                 # SQL schema and maintenance scripts
+├── apis.md                   # REST API reference
+├── mail_notify.md            # Email and push reminders
+└── README.md                 # This file
 ```
 
 ---
 
-## Veritabanı
+## Database
 
-MySQL (veya MariaDB) üzerinde çalışır. Örnek dosyalar `database/` altında:
+Runs on MySQL (or MariaDB). Sample files are located under `database/`:
 
-| Dosya | İçerik |
-|-------|--------|
-| `init.sql` | Çekirdek tablolar (kullanıcılar, oyun skorları, etkileşimler vb.) |
-| `calendar_events.sql` | Kullanıcı takvim etkinlikleri |
-| `symptom_screening.sql` | Şüphe taraması senaryoları |
-| `notify_support.sql` | Expo token + hatırlatma dedupe log tablosu |
-| `drop_nobetci_eczane.sql` | Eski nöbetçi tablosunu kaldırma (kullanıldıysa) |
-| `drop_notification_inbox_columns.sql` | İsteğe bağlı sütun temizliği |
+| File | Content |
+|------|---------|
+| `init.sql` | Core tables (users, game scores, interactions, etc.) |
+| `calendar_events.sql` | User calendar events |
+| `symptom_screening.sql` | Symptom screening scenarios |
+| `notify_support.sql` | Expo token + reminder dedupe log table |
+| `drop_nobetci_eczane.sql` | Removes legacy on-duty pharmacy table (if used) |
+| `drop_notification_inbox_columns.sql` | Optional column cleanup |
 
-Sıra genelde: önce `init.sql`, sonra özellik dosyaları; detaylar için `apis.md` ve mevcut `server.js` sorguları referans alınır.
+Typical order: `init.sql` first, then feature files; refer to `apis.md` and existing `server.js` queries for details.
 
 ---
 
-## Gereksinimler
+## Requirements
 
-- **Node.js** (LTS önerilir, örn. 20.x veya 22.x)
+- **Node.js** (LTS recommended, e.g. 20.x or 22.x)
 - **npm**
-- **MySQL 8** veya uyumlu **MariaDB**
-- Google Gemini ve SMTP için ilgili **hesap / anahtarlar** (üretimde `.env`)
+- **MySQL 8** or compatible **MariaDB**
+- Relevant **accounts / keys** for Google Gemini and SMTP (via `.env` in production)
 
 ---
 
-## Yerel geliştirme
+## Local Development
 
-### 1. Veritabanı
+### 1. Database
 
-MySQL’de veritabanı oluşturup `database/` içindeki uygun `.sql` dosyalarını içe aktarın.
+Create a database in MySQL and import the appropriate `.sql` files from the `database/` directory.
 
 ### 2. Backend
 
 ```bash
 cd backend
-cp .env.example .env   # yoksa .env dosyasını elle oluşturun
+cp .env.example .env   # or create the .env file manually
 npm install
 npm start
 ```
 
-Varsayılan dinleme: **`http://127.0.0.1:5000`** (HTTP). `PORT`, `BIND_HOST`, `DB_*`, `JWT_SECRET`, `GEMINI_API_KEY` vb. `.env` ile ayarlanır.
+Default listening address: **`http://127.0.0.1:5000`** (HTTP). `PORT`, `BIND_HOST`, `DB_*`, `JWT_SECRET`, `GEMINI_API_KEY`, etc. are configured via `.env`.
 
 ### 3. Frontend
 
@@ -176,62 +176,62 @@ npm install
 npm run dev
 ```
 
-Vite, `/api` isteklerini `vite.config.js` üzerinden `http://127.0.0.1:5000` adresine yönlendirir.
+Vite proxies `/api` requests to `http://127.0.0.1:5000` via `vite.config.js`.
 
-Üretim build:
+Production build:
 
 ```bash
 cd frontend
 npm run build
 ```
 
-Çıktı: `frontend/dist/` — statik hosting veya reverse proxy ile sunulur.
+Output: `frontend/dist/` — served via static hosting or reverse proxy.
 
-### 4. API adresi (üretim)
+### 4. API Address (Production)
 
-Build öncesi `frontend/.env.production` veya ortamda:
+Before building, set in `frontend/.env.production` or the environment:
 
-`VITE_API_URL=https://alanadiniz.com/api`
+`VITE_API_URL=https://yourdomain.com/api`
 
-(Sonda `/api`, sonda fazladan `/` olmadan; kök domain kullanılıyorsa `config.js` mantığına bakın.)
-
----
-
-## Üretim ortamı (özet)
-
-Tipik kurulum:
-
-1. **Node** süreci: `backend` klasöründe `npm start` (veya PM2/systemd).
-2. **TLS**: Alan adı için Let’s Encrypt veya hosting sertifikası; **HTTPS** ile yayın.
-3. **Reverse proxy** (Apache / nginx): `/api` → Node backend; statik dosyalar → `dist`.
-4. Güvenlik duvarında gerekirse sadece **80/443** dışarıya açık; Node iç ağda `127.0.0.1` dinleyebilir (`BIND_HOST=127.0.0.1`).
+(With `/api` at the end, no trailing slash; refer to `config.js` logic if using a root domain.)
 
 ---
 
-## Ortam değişkenleri
+## Production Environment (Summary)
 
-### Backend (`.env`) — örnek alanlar
+Typical setup:
 
-| Değişken | Açıklama |
-|----------|-----------|
-| `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` | MySQL bağlantısı |
-| `PORT`, `BIND_HOST` | Sunucu portu ve dinleme arayüzü |
-| `JWT_SECRET` | JWT imzası (güçlü ve gizli tutun) |
+1. **Node** process: `npm start` in the `backend` folder (or PM2/systemd).
+2. **TLS**: Let's Encrypt or hosting certificate for the domain; serve over **HTTPS**.
+3. **Reverse proxy** (Apache / nginx): `/api` → Node backend; static files → `dist`.
+4. In the firewall, only **80/443** exposed externally if needed; Node can listen internally on `127.0.0.1` (`BIND_HOST=127.0.0.1`).
+
+---
+
+## Environment Variables
+
+### Backend (`.env`) — example fields
+
+| Variable | Description |
+|----------|-------------|
+| `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` | MySQL connection |
+| `PORT`, `BIND_HOST` | Server port and listening interface |
+| `JWT_SECRET` | JWT signature (keep strong and secret) |
 | `GEMINI_API_KEY` | Google Generative AI |
-| `MAIL_USER`, `MAIL_PASS`, … | SMTP (hatırlatmalar) |
-| `DISABLE_NOTIFY_CRON` | `1` ise dakikalık hatırlatma cron’u kapalı |
-| `WATER_REMINDER_FIRST_HOUR`, `WATER_REMINDER_LAST_HOUR` | Su hatırlatması saat aralığı |
+| `MAIL_USER`, `MAIL_PASS`, … | SMTP (reminders) |
+| `DISABLE_NOTIFY_CRON` | If `1`, disables the per-minute reminder cron |
+| `WATER_REMINDER_FIRST_HOUR`, `WATER_REMINDER_LAST_HOUR` | Water reminder time range |
 
-Tam liste ve davranış için `mail_notify.md` ve `server.js` içi kullanımlar incelenebilir.
+For the full list and behavior, refer to `mail_notify.md` and usages within `server.js`.
 
 ---
 
-## Dokümantasyon
+## Documentation
 
-| Dosya | İçerik |
-|-------|--------|
-| **apis.md** | REST uçları, JWT, multipart alanları, örnek istekler |
-| **mail_notify.md** | E-posta hatırlatmaları, Expo push, cron, sorun giderme |
+| File | Content |
+|------|---------|
+| **apis.md** | REST endpoints, JWT, multipart fields, example requests |
+| **mail_notify.md** | Email reminders, Expo push, cron, troubleshooting |
 
 ---
 
